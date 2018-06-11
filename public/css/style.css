@@ -1,0 +1,448 @@
+/*estilos basicos*/
+@font-face {
+    font-family: menus;
+    src: url('../fuentes/FjallaOne-Regular.ttf');
+}
+@font-face {
+    font-family: texto-bold;
+    src: url('../fuentes/Montserrat-Bold.ttf');
+}
+@font-face {
+    font-family: texto-light;
+    src: url('../fuentes/Montserrat-Light.ttf');
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: texto-light;
+}
+a{
+    font-family: menus;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: texto-bold;
+}
+.wrap{
+    margin: 0 50px 0 50px;
+}
+.ml{
+   margin-left: 80px; 
+}
+.display-flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+h1{
+    font-size: 1.8em;
+}
+p{
+    font-size: .8em;
+}
+/*estilos basicos*/
+
+/*Barra colores */
+.top-colores, .bot-colores{
+    width: 100%;
+    height: 12.5px;
+    display: flex;
+}
+.top-colores{    
+    margin-bottom: 30px;
+}
+.col-colores{
+    width: 100%;
+    background: green;
+}
+.col-colores:nth-child(1){
+    background: #568bc9;
+}
+.col-colores:nth-child(2){
+    background: #b31e5f;
+}
+.col-colores:nth-child(3){
+    background: #bf2329;
+}
+.col-colores:nth-child(4){
+    background: #ea9053;
+}
+.col-colores:nth-child(5){
+    background: #efc634;
+}
+/*Barra colores */
+
+/*menu vertical*/
+.menu-vertical{
+    position: fixed;
+    z-index: 1;
+    margin-left: -100px;
+    margin-top: 8%;
+    transition: all .6s;
+}
+.menu-vertical ul li a{
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    padding: 15px 0 15px 0;
+    font-size: 90%;
+    list-style: none;
+    text-transform: uppercase;
+    color: black;
+}
+.imagen-vertical{
+    display: block;
+    width: 50px;
+    margin: auto;
+    opacity: 0;
+}
+.active-vertical{
+    transition: all 0.5s;
+    opacity: 1!important;
+}
+.display-on{
+    margin-left: -30px!important;
+}
+/*menu vertical*/
+
+/*Flecha arriba*/
+.flecha-arriba{
+    position: fixed;
+    right: 10px;
+    bottom: -50px;
+    width: 50px;
+    z-index: 16;
+    transition: all .6s;
+}
+.flecha-on{
+    bottom: 85px;
+}
+/*Flecha arriba*/
+
+/*estilos personalizados bootstrap*/
+
+/* menu superior */
+.nav-link{
+    text-transform: uppercase;
+    font-size: 1em;
+    margin: 0 30px 0 30px;
+}
+.navbar-brand img{
+    width: 320px;
+}
+.navbar-collapse{
+    align-self: flex-end;
+}
+.nav-item:hover .nav-link{
+    border-radius: 30px
+}
+.nav-item:nth-child(1):hover .nav-link{    
+    border: solid #568bc9 1.5px;
+}
+.nav-item:nth-child(2):hover .nav-link{   
+    border: solid #b31e5f 1.5px;
+}
+.nav-item:nth-child(3):hover .nav-link{   
+    border: solid #bf2329 1.5px;
+}
+.nav-item:nth-child(4):hover .nav-link{   
+    border: solid #ea9053 1.5px;
+}
+.nav-item:nth-child(5):hover .nav-link{   
+    border: solid #efc634 1.5px;
+}
+/* menu superior */
+
+
+/*primer carousel*/
+.carousel-indicators{        
+    right: 0;
+    margin-right: -50px;
+    margin-top: 15%;
+    bottom: auto;
+    display: block;
+    left: auto;
+    position: absolute;
+}
+.carousel-indicators li{   
+    border-radius: 50%;
+    margin: 20px;
+    width: 20px;
+    height: 20px;
+    border: solid 1px;
+    background: rgba(0,0,0,.1);
+    cursor: pointer;
+}
+.carousel-caption{
+    bottom: auto;
+    top: 30%;
+}
+.carousel-caption img{
+    width: 40px;
+    animation: flecha-carousel 2s 5s 3;
+}
+
+/*primer carousel*/
+/*estilos personalizados bootstrap*/
+
+/*estilos nosotros*/
+.nosotros{
+    border-bottom: solid black 2px; 
+    margin: auto;
+}
+.edificio{
+    margin-top: -150px
+}
+.flex-nosotros{    
+    display: flex;
+    align-items: center;
+}
+/*estilos nosotros*/
+
+
+/*Seccion servicios*/
+/*Estilos para marcas*/
+.tarjeta-wrap{
+    -webkit-perspective: 950;
+    -moz-perspective: 950;
+    perspective: 950; 
+    margin: 15px;
+}
+.tarjeta{
+    width: 280px;
+    height: 300px;
+    background: rgba(0,0,0,.3);
+    box-shadow: 0 10px 15px -5px rgba(0,0,0,.6);
+    position: relative;
+    transform-style: preserve-3d; 
+    transition: .7s;
+}
+.marca-1 .tarjeta-wrap:nth-child(1) .adelante{
+    background: url('../image/marcas/happy.png');
+    background-size: 100% 100%;
+    background-position: center;
+}
+.marca-1 .tarjeta-wrap:nth-child(2) .adelante{
+    background: url('../image/marcas/clubfranquicia.png');
+    background-size: 100% 100%;
+    background-position: center;
+}
+.marca-1 .tarjeta-wrap:nth-child(3) .adelante{
+    background: url('../image/marcas/agc.png');
+    background-size: 100% 100%;
+    background-position: center;
+}
+.marca-2 .tarjeta-wrap:nth-child(1) .adelante{
+    background: url('../image/marcas/pmkt.png');
+    background-size: 100% 100%;
+    background-position: center;
+}
+.marca-2 .tarjeta-wrap:nth-child(2) .adelante{
+    background: url('../image/marcas/miboda.png');
+    background-size: 100% 100%;
+    background-position: center;
+}
+.marca-2 .tarjeta-wrap:nth-child(3) .adelante{
+    background: url('../image/marcas/fif.png');
+    background-size: 100% 100%;
+    background-position: center;
+}
+.marca-1 .tarjeta-wrap:nth-child(1) .atras{
+    background: url('../image/marcas/happy.png');
+}
+.marca-1 .tarjeta-wrap:nth-child(2) .atras{
+    background: url('../image/marcas/clubfranquicia.png');
+}
+.marca-1 .tarjeta-wrap:nth-child(3) .atras{
+    background: url('../image/marcas/agc.png');
+}
+.marca-2 .tarjeta-wrap:nth-child(1) .atras{
+    background: url('../image/marcas/pmkt.png');
+}
+.marca-2 .tarjeta-wrap:nth-child(2) .atras{
+    background: url('../image/marcas/miboda.png');
+}
+.marca-2 .tarjeta-wrap:nth-child(3) .atras{
+    background: url('../image/marcas/fif.png');
+}
+.adelante, .atras{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    backface-visibility: hidden; 
+    text-align: center;
+    overflow: hidden;
+}
+.atras{
+    transform: rotateY(180deg);   
+}
+.tarjeta-wrap:hover .tarjeta{
+    transform: rotateY(180deg)
+}
+/*Estilos para marcas*/
+/*Seccion servicios*/
+
+/*auspicios*/
+.logo-auspicio{
+    width: 280px;
+    margin: 0 15px 0 15px;
+}
+.logo-auspicio img{
+    width: 200px;    
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    transition: all .5s;
+}
+.logo-auspicio:hover img{
+    -webkit-filter: none;
+    filter: none;
+}
+/*auspicios*/
+
+/* linea de tiempo */
+    .l-tiempo{
+        background: url('../image/l-tiempo.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;        
+        height: 500px;    
+        width: 100%;
+    }
+/* linea de tiempo */
+
+
+/* contacto */
+.empresario{
+    float: right;
+    width: 25%;
+    margin-top: -25%;
+    position: relative;
+}
+.form-control{    
+    border-radius: 25px;
+    border: solid black .8px;
+    background: transparent;
+}
+.contacto h1{
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+.btn-enviar{
+    background: #b31e5f;
+    color: white;
+    border-radius: 30px;
+    padding: 5px 25px 5px 25px;
+    margin-top: 30px;
+}
+/* contacto */
+
+
+/* Footer */
+    footer{
+        background: #383737;
+    }
+    footer h1{
+        color: white;
+    }
+    footer a{
+        color: white;
+    }
+    footer a:hover{
+        color: white;
+    }
+    footer ul{
+        margin-top: 20px;
+    }
+    footer li{
+        list-style: none;
+        line-height: 2    
+    }
+    footer h5{
+        color: white; 
+    }
+    footer img{
+        width: 150px
+    }
+/* Footer */
+
+/*Alerta de contacto*/
+.alerta{
+    text-align: right;
+}
+
+/*media querys*/
+
+/*1182*/
+@media screen and (max-width: 1182px){
+    .nosotros{
+        position: relative;
+    }
+    .edificio{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+    .nav-link{
+        margin: 0;
+    }
+}
+/*1182*/
+
+/* 767 */
+@media screen and (max-width: 767px){
+    .edificio{
+        display: none;
+    }
+    .ml{
+        margin-left: 0;
+        text-align: center;
+    }
+    footer div{
+        text-align: center;
+    }
+    .contacto h1{
+        text-align: center;
+    }
+}
+/* 767 */
+
+/*Estilos para celular*/
+@media screen and (max-width:560px){
+    /*Estilos basicos*/
+    /*Estilos basicos*/
+    /*primer carousel*/
+    .carousel-indicators{
+        margin-top: 0;
+    }
+    /*primer carousel*/
+
+    .tarjeta-wrap{
+        margin: 0;
+        margin-bottom: 15px;
+    }
+    .navbar-brand img{
+        width: 150px;
+    }
+    .empresario{
+        float: none;
+        width: 150px;
+        margin-top: 0!important;
+        margin-left: 20%;
+    }
+}
+/*Estilos para celular*/
+
+/*media querys*/
+
+
+@keyframes flecha-carousel{
+    from{
+        margin-top: 30px;
+        opacity: 1;
+    }
+    to{
+        margin-top: 60px;
+        opacity: 0;
+    }
+}
+/* Plantilla desarrollada por: Jesús Milano y María Pía de Jesús */
