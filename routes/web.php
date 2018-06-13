@@ -11,8 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::redirect('/', 'index');
+   
+Route::get('index', 'Web\HomeController@index')->name('index');
 Route::post('enviar', 'Web\HomeController@enviar')->name('enviar');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('main', 'Admin\MainController');
+Route::resource('logo', 'Admin\LogoController');
+Route::resource('section', 'Admin\sectionController');
+Route::resource('menu', 'Admin\MenuController');
+Route::resource('content', 'Admin\ContentController');
+Route::resource('carousel', 'Admin\CarouselController');

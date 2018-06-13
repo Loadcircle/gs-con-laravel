@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Garro Stucchi</title>
+    <title>{{ $titulo }}</title>
     <link rel="icon" href="{{ asset('image/favicon.jpg') }}" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,12 +16,10 @@
 <body>
     <!-- Menu vertical -->
     <div class="menu-vertical">
-        <ul>
-            <li><a href="#contacto">Contacto    <img class="imagen-vertical contacto-active" src="{{ asset('image/arrow.svg') }}" alt=""></a></li>
-            <li><a href="#convenio">Convenios   <img class="imagen-vertical convenio-active" src="{{ asset('image/arrow.svg') }}" alt=""></a></li>
-            <li><a href="#historia">Historia    <img class="imagen-vertical historia-active" src="{{ asset('image/arrow.svg') }}" alt=""></a></li>
-            <li><a href="#servicio">Marcas      <img class="imagen-vertical servicio-active" src="{{ asset('image/arrow.svg') }}" alt=""></a></li>
-            <li><a href="#nosotros">Nosotros    <img class="imagen-vertical nosotros-active" src="{{ asset('image/arrow.svg') }}" alt=""></a></li>
+        <ul>            
+            @foreach ($menu->reverse() as $m)
+            <li><a href="#{{ $m->slug }}">{{ $m->name }}    <img class="imagen-vertical {{ $m->slug}}-active" src="{{ asset('image/arrow.svg') }}" alt=""></a></li>
+            @endforeach
         </ul>
     </div>
     <!-- Menu vertical -->
@@ -34,7 +32,6 @@
 
     <!-- wrap -->
     <div class="wrap"> 
-
         <!-- Barra superior de colores -->
         <div class="top-colores" id="top">
             <div class="col-colores"></div>
@@ -53,21 +50,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#nosotros">Nosotros</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#servicio">Marcas</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#historia">Historia</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#convenio">Convenios</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#contacto">Contacto</a>
-                    </li>
+                    @foreach ($menu as $m)                        
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#{{ $m->slug}}">{{$m->name}}</a>
+                        </li>
+                    @endforeach                    
                 </ul>
             </div>
         </nav>
@@ -83,11 +70,9 @@
                 <div class="col-md-4">
                     <h1>Sigue navegando</h1>
                     <ul>
-                        <li><a href="#nosotros">Nosotros</a></li>
-                        <li><a href="#servicio">Unidades de negocio</a></li>
-                        <li><a href="#historia">Nuestra historia</a></li>
-                        <li><a href="#convenio">Convenios</a></li>
-                        <li><a href="#contacto">Contáctanos</a></li>
+                        @foreach ($menu as $m)                            
+                        <li><a href="#{{$m->slug}}">{{$m->name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -102,7 +87,9 @@
                     </ul>
                 </div>
             </div>
-            <h5 class="text-center">2018 Copyright: <a href="http://garrostucchi.com/">garrostucchi.com</a></h5>
+            <h6 class="text-center" style="color: white">{{ $direccion }}</h6>
+            <h6 class="text-center" style="color: white">{{ $telefono }}</h6>
+            <h5 class="text-center">2018 Copyright: <a href="{{ route('index') }}">{{ $titulo }}</a></h5>
     </footer>
 
 </div> 

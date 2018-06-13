@@ -13,22 +13,22 @@ class CreateContentTable extends Migration
      */
     public function up()
     {
-        Schema::create('content', function (Blueprint $table) {
-            $table->increments('id');
+        // Schema::create('content', function (Blueprint $table) {
+        //     $table->increments('id');
             
-            $table->text('content')->nullable();
-            $table->string('file', 128)->nullable();
-            $table->enum('position',['1','2'])->default('1');
-            $table->integer('section_id')->unsigned();
-            $table->enum('status',['ACTIVE','INACTIVE'])->default('ACTIVE');
+        //     $table->text('content')->nullable();
+        //     $table->string('file', 128)->nullable();
+        //     $table->enum('position',['1','2'])->default('1');
+        //     $table->integer('section_id')->unsigned();
+        //     $table->enum('status',['ACTIVE','INACTIVE'])->default('ACTIVE');
 
-            $table->timestamps();
+        //     $table->timestamps();
             
-            //Relations
-            $table->foreign('section_id')->references('id')->on('section')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-        });
+        //     //Relations
+        //     $table->foreign('section_id')->references('id')->on('section')
+        //         ->onDelete('cascade')
+        //         ->onUpdate('cascade');
+        // });
     }
 
     /**
@@ -38,6 +38,6 @@ class CreateContentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content');
+        // Schema::dropIfExists('content');
     }
 }

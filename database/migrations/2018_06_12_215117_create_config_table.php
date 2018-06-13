@@ -13,15 +13,15 @@ class CreateConfigTable extends Migration
      */
     public function up()
     {
-        Schema::create('config', function (Blueprint $table) {
-            $table->increments('id');
+        // Schema::create('config', function (Blueprint $table) {
+        //     $table->increments('id');
             
-            $table->string('name', 50);
-            $table->mediumText('value', 128)->nullable();
-            $table->enum('status', ['ACTIVE','INACTIVE'])->default('ACTIVE');
+        //     $table->string('name', 50);
+        //     $table->mediumText('value', 128)->nullable();
+        //     $table->enum('status', ['ACTIVE','INACTIVE'])->default('ACTIVE');
 
-            $table->timestamps();
-        });
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -31,6 +31,6 @@ class CreateConfigTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config');
+        // Schema::dropIfExists('config');
     }
 }
