@@ -216,7 +216,7 @@ p{
     transition: .7s;
 }
 .marca-1 .tarjeta-wrap:nth-child(1) .adelante{
-    background: url('../image/marcas/happy.png');
+    background: url('../image/marcas/pmkt.png');
     background-size: 100% 100%;
     background-position: center;
 }
@@ -226,12 +226,12 @@ p{
     background-position: center;
 }
 .marca-1 .tarjeta-wrap:nth-child(3) .adelante{
-    background: url('../image/marcas/agc.png');
+    background: url('../image/marcas/fif.png');
     background-size: 100% 100%;
     background-position: center;
 }
 .marca-2 .tarjeta-wrap:nth-child(1) .adelante{
-    background: url('../image/marcas/pmkt.png');
+    background: url('../image/marcas/happy.png');
     background-size: 100% 100%;
     background-position: center;
 }
@@ -241,27 +241,27 @@ p{
     background-position: center;
 }
 .marca-2 .tarjeta-wrap:nth-child(3) .adelante{
-    background: url('../image/marcas/fif.png');
+    background: url('../image/marcas/agc.png');
     background-size: 100% 100%;
     background-position: center;
 }
 .marca-1 .tarjeta-wrap:nth-child(1) .atras{
-    background: url('../image/marcas/happy.png');
+    background: url('../image/marcas/pmkt.png');
 }
 .marca-1 .tarjeta-wrap:nth-child(2) .atras{
     background: url('../image/marcas/clubfranquicia.png');
 }
 .marca-1 .tarjeta-wrap:nth-child(3) .atras{
-    background: url('../image/marcas/agc.png');
+    background: url('../image/marcas/fif.png');
 }
 .marca-2 .tarjeta-wrap:nth-child(1) .atras{
-    background: url('../image/marcas/pmkt.png');
+    background: url('../image/marcas/happy.png');
 }
 .marca-2 .tarjeta-wrap:nth-child(2) .atras{
     background: url('../image/marcas/miboda.png');
 }
 .marca-2 .tarjeta-wrap:nth-child(3) .atras{
-    background: url('../image/marcas/fif.png');
+    background: url('../image/marcas/agc.png');
 }
 .adelante, .atras{
     width: 100%;
@@ -307,6 +307,17 @@ p{
         background-repeat: no-repeat;        
         height: 500px;    
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+    }
+    .l-tiempo h1, h2{
+        color: white;
+        margin-left: 20px;
+    }
+    .l-tiempo span{
+        color: yellow;
+        font-weight: bolder;
     }
 /* linea de tiempo */
 

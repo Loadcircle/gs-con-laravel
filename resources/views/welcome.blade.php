@@ -66,10 +66,10 @@
                 <div class="atras">
                     <div class="row" style="margin-top: 220px;">
                         <div class="col-md-6 col-sm-6 col-6">
-                            <a href="http://happyfactory.pe" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
+                            <a href="http://pmktconsulting.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
                         </div>
                         <div class="col-md-6 col-sm-6 col-6">
-                            <a href="https://www.facebook.com/HappyFactory.pe/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
+                            <a href="https://www.facebook.com/pmktconsulting/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
                         </div>
                     </div>
                 </div>
@@ -95,10 +95,10 @@
                 <div class="adelante marca-1"></div>
                 <div class="atras">                            <div class="row" style="margin-top: 220px;">
                     <div class="col-md-6 col-sm-6 col-6">
-                        <a href="https://agcproducciones.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
+                        <a href="http://feriafranquiciasperu.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
                     </div>
                     <div class="col-md-6 col-sm-6 col-6">
-                        <a href="https://www.facebook.com/AGC-Producciones-161667073894696/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
+                        <a href="https://www.facebook.com/fifperu/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
                     </div>
                 </div></div>
             </div>
@@ -111,10 +111,10 @@
                     <div class="atras">
                         <div class="row" style="margin-top: 220px;">
                             <div class="col-md-6 col-sm-6 col-6">
-                                <a href="http://pmktconsulting.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
+                                <a href="http://happyfactory.pe" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
                             </div>
                             <div class="col-md-6 col-sm-6 col-6">
-                                <a href="https://www.facebook.com/pmktconsulting/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
+                                <a href="https://www.facebook.com/HappyFactory.pe/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
                             </div>
                         </div>
                     </div>
@@ -141,10 +141,10 @@
                     <div class="atras">
                         <div class="row" style="margin-top: 220px;">
                             <div class="col-md-6 col-sm-6 col-6">
-                                <a href="http://feriafranquiciasperu.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
+                                <a href="https://agcproducciones.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
                             </div>
                             <div class="col-md-6 col-sm-6 col-6">
-                                <a href="https://www.facebook.com/fifperu/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
+                                <a href="https://www.facebook.com/AGC-Producciones-161667073894696/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
                             </div>
                         </div>
                     </div>
@@ -156,7 +156,8 @@
 
 <!-- Linea de tiempo -->
 <span id="historia"></span>
-<div class="my-5 l-tiempo">                
+<div class="my-5 l-tiempo">  
+    <h1>Comprometidos con tu <span>éxito.</span><br>Tenemos una metodología <br>propia de trabajo <br>orientada a resultados</h1>
 </div>
 <!-- Linea de tiempo -->
 
@@ -188,13 +189,13 @@
     </div>
     <div class="display-flex my-5">
             <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/consorcio_ferial_peru.png') }}" alt="">
+                <img src="{{ asset('image/auspicios/camara_espanola.png') }}" alt="">
             </div>
             <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/cesar_vallejo.png') }}" alt="">
+                <img src="{{ asset('image/auspicios/perusa.png') }}" alt="">
             </div>
             <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/up.png') }}" alt="">
+                <img src="{{ asset('image/auspicios/programa_nacional_franquicias.png') }}" alt="">
             </div>
     </div>
 </div>
