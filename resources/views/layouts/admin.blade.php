@@ -47,8 +47,8 @@
                                   Main Config
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{ route('main.index') }}">Info</a>
-                                  <a class="dropdown-item" href="{{ route('logo.index') }}">Logos</a>
+                                  <a class="dropdown-item" href="{{ route('mains.index') }}">Info</a>
+                                  <a class="dropdown-item" href="{{ route('logos.index') }}">Logos</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -56,13 +56,13 @@
                                   Sections
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{ route('section.index') }}">Sections</a>
-                                  <a class="dropdown-item" href="{{ route('menu.index') }}">Menus</a>
-                                  <a class="dropdown-item" href="{{ route('content.index') }}">Content</a>
+                                  <a class="dropdown-item" href="{{ route('sections.index') }}">Sections</a>
+                                  <a class="dropdown-item" href="{{ route('menus.index') }}">Menus</a>
+                                  <a class="dropdown-item" href="{{ route('contents.index') }}">Content</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('carousel.index') }}" class="nav-link">Carousel</a>
+                                <a href="{{ route('carousels.index') }}" class="nav-link">Carousel</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -87,6 +87,29 @@
             </div>
         </nav>
 
+        @if(session('info'))
+            <div class="container text-center my-3">
+                <div class="alert alert-success">
+                    {{ session('info') }}
+                </div>
+            </div>
+        @endif
+
+        @if(count($errors))
+            <div class="container text-center">
+                <div class="row">
+                    <div class="">
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>                                    
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif        
         <main class="py-4">
             @yield('content')
         </main>

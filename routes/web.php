@@ -13,16 +13,16 @@
 
 Route::redirect('/', 'index');
    
-Route::get('index', 'Web\HomeController@index')->name('index');
-Route::post('enviar', 'Web\HomeController@enviar')->name('enviar');
+Route::get('index',     'Web\HomeController@index')->name('index');
+Route::post('enviar',   'Web\HomeController@enviar')->name('enviar');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('main', 'Admin\MainController');
-Route::resource('logo', 'Admin\LogoController');
-Route::resource('section', 'Admin\sectionController');
-Route::resource('menu', 'Admin\MenuController');
-Route::resource('content', 'Admin\ContentController');
-Route::resource('carousel', 'Admin\CarouselController');
+Route::resource('mains',        'Admin\MainController');
+Route::resource('logos',        'Admin\LogoController');
+Route::resource('sections',     'Admin\sectionController');
+Route::resource('menus',        'Admin\MenuController');
+Route::resource('contents',     'Admin\ContentController');
+Route::resource('carousels',    'Admin\CarouselController');
