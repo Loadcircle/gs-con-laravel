@@ -13,16 +13,16 @@ class CreateLogoTable extends Migration
      */
     public function up()
     {
-         Schema::create('logos', function (Blueprint $table) {
-             $table->increments('id');
+        //  Schema::create('logos', function (Blueprint $table) {
+        //      $table->increments('id');
 
-             $table->string('name', 50);
-             $table->string('file', 128);
-             $table->enum('status', ['ACTIVE', 'INACTIVE']);
+        //      $table->string('name', 50);
+        //      $table->string('file', 128);
+        //      $table->enum('status', ['ACTIVE', 'INACTIVE']);
             
 
-             $table->timestamps();
-         });
+        //      $table->timestamps();
+        //  });
     }
 
     /**
@@ -32,6 +32,6 @@ class CreateLogoTable extends Migration
      */
     public function down()
     {
-         Schema::dropIfExists('logos');
+        //  Schema::dropIfExists('logos');
     }
 }

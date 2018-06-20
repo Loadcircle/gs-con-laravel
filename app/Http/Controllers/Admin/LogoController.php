@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MainUpdateRequest;
-use App\Config;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\LogoUpdateRequest;
+use App\Logo;
 
-class MainController extends Controller
+class LogoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +18,9 @@ class MainController extends Controller
     public function index()
     {
         //config
-        $config     = Config::orderBy('id', 'ASC')->get();
+        $logo     = Logo::orderBy('id', 'ASC')->get();
         //config
-
-
-        return view('admin.main.index', compact('config'));
+        return view('admin.logo.index', compact('logo'));
     }
 
     /**
@@ -64,17 +63,11 @@ class MainController extends Controller
      */
     public function edit($id)
     {
-        $config = Config::find($id);     
-        
-        return view('admin.main.edit', compact('config'));
+        $logo = Logo::find($id);     
+        //dd($logo->file);
+        return view('admin.logo.edit', compact('logo'));
     }
 
-    public function edit2($id)
-    {
-        $config = Config::find($id);     
-        
-        return view('admin.main.edit', compact('config'));
-    }
     /**
      * Update the specified resource in storage.
      *
@@ -82,16 +75,26 @@ class MainController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MainUpdateRequest $request, $id)
+    public function update(LogoUpdateRequest $request, $id)
     {
-        $config = Config::find($id); 
+        $logo = Logo::find($id);             
+        //$this->authorize('pass', $logo);
 
-        $config->fill($request->all())->save();
-
-        return redirect()->route('mains.index')
-             ->with('info', 'Entrada actualizada con éxito');
+        //image
+        if($request->file('file')){ //esta condicion verifica en el formulario si se ha enviado un archivo
+            
+            $path = Storage::disk('public')//almacenar en el disco public que busca en filesystems.php en config
+                ->put('image', $request->file('file'));  //almacena en una carpeta llamada 'image' el archivo request
+                //todo este codigo superior genero una ruta relativa
+                $logo->fill(['file' => $path])->save();
+                //con fill agregamos a la variable logo la ruta generada como 'file', asset convierte la ruta en una ruta completa
+        }
+        
+        $logo->fill(['status' => $request->status])->save();
+        
+         return redirect()->route('logos.index')
+         ->with('info', 'Entrada actualizada con éxito');
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -101,8 +104,6 @@ class MainController extends Controller
      */
     public function destroy($id)
     {
-        $config = Config::find($id)->update(['status' => 'INACTIVE']); 
-
-        return redirect()->route('mains.index')->with('info', 'Eliminado correctamente');
+        //
     }
 }

@@ -13,15 +13,16 @@ class CreateTableCarousel extends Migration
      */
     public function up()
     {
-        Schema::create('carousels', function (Blueprint $table) {
-            $table->increments('id');
+        //  Schema::create('carousels', function (Blueprint $table) {
+        //      $table->increments('id');
             
-            $table->string('file', 128);
-            $table->string('tittle', 128)->nullable();
-            $table->integer('position')->unsigned();
+        //      $table->string('file', 128);
+        //      $table->string('tittle', 128)->nullable();
+        //      $table->integer('position')->unsigned()->default('1');;
+        //      $table->enum('status', ['ACTIVE', 'INACTIVE']);
             
-            $table->timestamps();
-        });
+        //      $table->timestamps();
+        //  });
     }
 
     /**
@@ -31,6 +32,6 @@ class CreateTableCarousel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carousels');
+        //  Schema::dropIfExists('carousels');
     }
 }
