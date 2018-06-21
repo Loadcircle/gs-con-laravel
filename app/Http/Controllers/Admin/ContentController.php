@@ -22,15 +22,19 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($section_id)
     {
+        $section = Section::find($section_id);
+        $titulo_seccion = $section->name;
+        $section_type = $section->section_types_id;
         //content
         $content    = Content::orderBy('contents.id', 'ASC')
                     ->join('sections', 'sections.id', '=', 'contents.section_id')
                     ->select('contents.*', 'sections.name as section')
+                    ->where('sections.id', '=', $section_id)
                     ->get();
         //content
-        return view('admin.content.index', compact('content'));
+        return view('admin.content.index', compact('content', 'section_id', 'titulo_seccion', 'section_type'));
     }
 
     /**
@@ -38,10 +42,9 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($section_id)
     {
-        $section    = Section::where('status', '=', 'ACTIVE')->pluck('name', 'id');
-        return view('admin.content.create', compact('section'));
+        return view('admin.content.create', compact('section_id'));
     }
 
     /**
@@ -67,11 +70,11 @@ class ContentController extends Controller
                 //con fill agregamos a la variable content la ruta generada como 'file', asset convierte la ruta en una ruta completa
                         
 
-                return redirect()->route('contents.index')
+                return redirect()->route('contents',['id' => $request->section_id])
                     ->with('info', 'Contenido creado con éxito');        
         }else{
             $content->fill($request->all())->save();
-            return redirect()->route('contents.index')
+            return redirect()->route('contents', ['id' => $request->section_id])
                 ->with('info', 'Contenido creado con éxito');        
         }
         
@@ -98,13 +101,11 @@ class ContentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($section_id,$id)
     {
         $content    = Content::find($id);   
 
-        $section    = Section::where('status', '=', 'ACTIVE')->pluck('name', 'id');
-
-        return view('admin.content.edit', compact('content', 'section')); 
+        return view('admin.content.edit', compact('content', 'section_id', 'id')); 
     }
 
     /**
@@ -135,7 +136,7 @@ class ContentController extends Controller
             $content->fill(['name' => $request->name, 'content' => $request->content, 'position' => $request->position, 'section_id' => $request->section_id,'status' => $request->status])->save();
         }
                 
-         return redirect()->route('contents.index')
+         return redirect()->route('contents',['id' => $request->section_id])
          ->with('info', 'Entrada actualizada con éxito');
     }
 

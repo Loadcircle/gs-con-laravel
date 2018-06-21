@@ -2,6 +2,9 @@
         <div class="col-md-6">
     
             <div class="form-group ">
+                {{ Form::hidden('section_id', $section_id, ['class' => 'form-control', 'id' => 'section_id']) }}  
+            </div>
+            <div class="form-group ">
                 {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}  
             </div>
             <div class="form-group ">
@@ -9,11 +12,7 @@
             </div>
             <div class="form-group ">
                 {{ Form::file('file', ['class' => 'form-control', 'id' => 'file']) }}               
-            </div>   
-            <div class="form-group">        
-                {!! Form::label('section_id', 'Section') !!}        
-                {{ Form::select('section_id', $section, null,['class' => 'form-control', 'id' => 'section_id']) }}
-            </div>
+            </div>  
             <div class="form-group ">             
                 {!! Form::label('select', 'Position') !!}            
                 {{ Form::select('position',array(

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Garro Stucchi') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -58,9 +58,20 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                   <a class="dropdown-item" href="{{ route('sections.index') }}">Sections</a>
                                   <a class="dropdown-item" href="{{ route('menus.index') }}">Menus</a>
-                                  <a class="dropdown-item" href="{{ route('contents.index') }}">Content</a>
                                 </div>
                             </li>
+                            @if ($count_m>0)
+                            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Content
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @foreach ($section_m as $s)                                            
+                                        <a class="dropdown-item" href="{{ route('contents',['section_id' => $s->id]) }}">{{$s->name}}</a>
+                                        @endforeach
+                                    </div>
+                            </li>                                
+                            @endif
                             <li class="nav-item">
                                 <a href="{{ route('carousels.index') }}" class="nav-link">Carousel</a>
                             </li>

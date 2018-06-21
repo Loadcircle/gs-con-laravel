@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Section;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->share('count_m', $count_m = Section::count());
+        view()->share('section_m', $section_m = Section::where('status', 'ACTIVE')->get());
     }
 
     /**

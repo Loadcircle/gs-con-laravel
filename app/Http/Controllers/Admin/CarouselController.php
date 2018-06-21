@@ -8,11 +8,16 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CarouselStoreRequest;
 use App\Http\Requests\CarouselUpdateRequest;
 use App\Carousel;
+use App\Section;
 
 class CarouselController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado
+        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado   
+             
+        $section_m = Section::where('status', 'ACTIVE')->get();
+        $count_m = Section::count();
+        return compact('section_m', 'count_m');
     }     
     /**
      * Display a listing of the resource.
