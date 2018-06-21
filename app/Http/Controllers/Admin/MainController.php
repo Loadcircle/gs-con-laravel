@@ -9,6 +9,9 @@ use App\Config;
 
 class MainController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado
+    }     
     /**
      * Display a listing of the resource.
      *
@@ -69,12 +72,6 @@ class MainController extends Controller
         return view('admin.main.edit', compact('config'));
     }
 
-    public function edit2($id)
-    {
-        $config = Config::find($id);     
-        
-        return view('admin.main.edit', compact('config'));
-    }
     /**
      * Update the specified resource in storage.
      *

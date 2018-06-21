@@ -8,9 +8,8 @@
     }
 </style>
 <div class="container-fluid">
-    <h1 class="text-center">Configuracion Principal</h1>
-        <hr>
-        
+    <h1 class="text-center">Configuracion Logos</h1>
+        <hr>        
         <div class="container">
 
                 <table class="table table-striped table-hover text-center">

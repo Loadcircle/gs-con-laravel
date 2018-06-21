@@ -11,6 +11,9 @@ use App\Carousel;
 
 class CarouselController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado
+    }     
     /**
      * Display a listing of the resource.
      *
@@ -121,6 +124,8 @@ class CarouselController extends Controller
         //image
         if($request->file('file')){ //esta condicion verifica en el formulario si se ha enviado un archivo
             
+            Storage::disk('public')->delete($carousel->file);
+
             $path = Storage::disk('public')//almacenar en el disco public que busca en filesystems.php en config
                 ->put('image', $request->file('file'));  //almacena en una carpeta llamada 'image' el archivo request
                 //todo este codigo superior genero una ruta relativa

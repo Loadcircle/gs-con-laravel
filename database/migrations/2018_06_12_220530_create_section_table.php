@@ -13,16 +13,23 @@ class CreateSectionTable extends Migration
      */
     public function up()
     {
-        // Schema::create('section', function (Blueprint $table) {
-        //     $table->increments('id');
+        //   Schema::create('sections', function (Blueprint $table) {
+        //       $table->increments('id');
             
-        //     $table->string('name', 50);
-        //     $table->string('slug', 50);
-        //     $table->integer('position')->unsigned();
-        //     $table->enum('status',['ACTIVE','INACTIVE'])->default('ACTIVE');
+        //       $table->string('name', 50);
+        //       $table->string('slug', 50);
+        //       $table->integer('section_types_id')->unsigned();
+        //       $table->integer('position')->nullable();
+        //       $table->enum('status',['ACTIVE','INACTIVE'])->default('ACTIVE');
 
-        //     $table->timestamps();
-        // });
+        //       $table->timestamps();
+
+        //      //Relations
+        //       $table->foreign('section_types_id')->references('id')->on('section_types')
+        //           ->onDelete('cascade')
+        //           ->onUpdate('cascade');
+        //   });
+         
     }
 
     /**
@@ -32,6 +39,6 @@ class CreateSectionTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('section');
+        //   Schema::dropIfExists('section');
     }
 }

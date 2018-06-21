@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $titulo }}</title>
-    <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/gif" sizes="16x16">
+    <title>@if(isset($titulo)){{$titulo}}@else Garro Stucchi @endif</title>
+    <link rel="icon" href=@if(isset($favicon))"{{asset('').'/'.$favicon}}"@else"{{ asset('image/default/favicon.png') }}"@endif type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -44,7 +44,7 @@
 
         <!-- inicio del nav superior -->
         <nav id="menu" class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="#"><img src="{{ asset('image/logo1.png') }}" alt=""></a>
+            <a class="navbar-brand" href="#"><img src=@if(isset($logo1))"{{asset('').'/'.$logo1}}"@else"{{ asset('image/default/logo1.png') }}"@endif alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -65,7 +65,7 @@
     <footer class="footer py-3">
             <div class="row my-5">
                 <div class="col-md-4 text-center">
-                    <img src="image/logo2.png" alt="">
+                    <img src=@if(isset($logo2))"{{asset('').'/'.$logo2}}"@else"{{ asset('image/default/logo2.png') }}"@endif alt="">
                 </div>
                 <div class="col-md-4">
                     <h1>Sigue navegando</h1>
@@ -87,9 +87,9 @@
                     </ul>
                 </div>
             </div>
-            <h6 class="text-center" style="color: white">{{ $direccion }}</h6>
-            <h6 class="text-center" style="color: white">{{ $telefono }}</h6>
-            <h5 class="text-center">2018 Copyright: <a href="{{ route('index') }}">{{ $titulo }}</a></h5>
+            <h6 class="text-center" style="color: white">@if(isset($direccion)){{$direccion}}@else Calle Ernesto Plascencia 166 @endif</h6>
+            <h6 class="text-center" style="color: white">@if(isset($telefono)){{$telefono}}@else 2213766 @endif</h6>
+            <h5 class="text-center">2018 Copyright: <a href="{{ route('index') }}">@if(isset($titulo)){{$titulo}}@else Garro Stucchi @endif</a></h5>
     </footer>
 
 </div> 

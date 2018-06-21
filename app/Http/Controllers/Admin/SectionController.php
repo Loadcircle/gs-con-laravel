@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SectionUpdateRequest;
+use App\Http\Requests\SectionStoreRequest;
 use App\Section;
+use App\Menu;
+
 class SectionController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado
+    }     
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +21,9 @@ class SectionController extends Controller
      */
     public function index()
     {        
-        //config
+        //section
         $section     = Section::orderBy('id', 'ASC')->get();
-        //config
+        //section
 
 
         return view('admin.section.index', compact('section'));
@@ -29,7 +36,16 @@ class SectionController extends Controller
      */
     public function create()
     {
-        //
+        $count = Section::pluck('position');
+
+        $array=array();
+        $i=1;
+        foreach($count as $c){
+            $array[$i]=$c;
+            $i++;
+        }
+
+        return view('admin.section.create', compact('array'));        
     }
 
     /**
@@ -38,9 +54,22 @@ class SectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SectionStoreRequest $request)
     {
-        //
+        $section    = Section::create($request->all());
+
+        $menu       = Menu::create(
+                    ['name' => $request->name, 
+                     'section_id' => $section->id, 
+                     'position' => $request->position,
+                     'status' => $request->status
+                     ]);
+        
+        $section->fill($request->all())->save();
+
+        return redirect()->route('sections.index')
+        ->with('info', 'Sección creada con éxito');      
+    
     }
 
     /**
@@ -61,8 +90,18 @@ class SectionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {        
+        $section = Section::find($id);   
+
+        $count = Section::pluck('position');
+
+        $array=array();
+        $i=1;
+        foreach($count as $c){
+            $array[$i]=$c;
+            $i++;
+        }  
+        return view('admin.section.edit', compact('section', 'array')); 
     }
 
     /**
@@ -72,9 +111,16 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SectionUpdateRequest $request, $id)
     {
-        //
+        $section = Section::find($id); 
+        $menu = Menu::where('id', '=', $id)->firstOrFail();
+
+        $menu->fill(['position' => $request->position,'status' => $request->status])->save();
+        $section->fill($request->all())->save();
+
+        return redirect()->route('sections.index')
+             ->with('info', 'Entrada actualizada con éxito');        
     }
 
     /**
@@ -85,6 +131,12 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //$post = Post::find($id)->delete();  este codigo ejecuta directamente el delete
+        $section = Section::find($id);
+        //$this->authorize('pass', $section);
+        
+        $section->delete();
+        
+        return back()->with('info', 'Eliminado correctamente');
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h1 class="text-center">Configuracion Principal</h1>
+    <h1 class="text-center">Configuracion del Carousel principal</h1>
         <hr>
         
         <div class="container">
@@ -29,10 +29,10 @@
                                 <td>{{ $c->status }}</td>
                                 <td>
                                     <a href="{{ route('carousels.edit', $c->id) }}" class="btn btn-sm btn-default"><img width="25px" src="{{asset('admin/image/pencil.svg')}}" alt="" srcset=""></a>
-                                    <a href="#eliminar" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-sm btn-default"><img width="25px" src="{{asset('admin/image/waste-bin.svg')}}" alt="" srcset=""></a>                                 
+                                    <a href="#eliminar" data-toggle="modal" data-target=".bd-example-modal-sm{{$c->id}}" class="btn btn-sm btn-default"><img width="25px" src="{{asset('admin/image/waste-bin.svg')}}" alt="" srcset=""></a>                                 
                                 </td>
                             </tr>
-                            <div style="margin-top: 10%" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div style="margin-top: 10%" class="modal fade bd-example-modal-sm{{$c->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-sm">
                                     <h1 class="text-center" style="color: white;">¿Desea eliminar este registro?</h1>
                                   <div class="modal-content" style="background: transparent; border: none;">                

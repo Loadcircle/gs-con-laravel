@@ -5,36 +5,27 @@
 <span id="inicio"></span> <!-- para remover el menu -->
 <div id="carouselExampleIndicators" class="carousel slide my-5" data-ride="carousel">
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <?php $i=0; ?>
+            @foreach ($carousel as $car)                
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" @if($i == 0)class="active"@endif></li>
+            <?php $i++;?>
+            @endforeach
         </ol>
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="{{ asset('image/banner1.jpg') }}" alt="First slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h1>Un holding de <br>marcas Peruanas</h1>
-                <a href="#nosotros"><img src="{{ asset('image/arrow2.svg') }}" alt="flecha abajo"></a>
-              </div>
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset('image/banner2.jpg') }}" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h1>Un holding de <br>marcas Peruanas</h1>
-                <a href="#nosotros"><img src="{{ asset('image/arrow2.svg') }}" alt="flecha abajo"></a>
-              </div>
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset('image/banner3.jpg') }}" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h1>Un holding de <br>marcas Peruanas</h1>
-                <a href="#nosotros"><img src="{{ asset('image/arrow2.svg') }}" alt="flecha abajo"></a>
-              </div>
-          </div> 
+            <?php $i=0; ?>
+            @foreach ($carousel as $car)   
+            <div @if($i == 0)class="carousel-item active"@else class="carousel-item" @endif>
+                <img class="d-block w-100" src="{{ asset('').'/'.$car->file }}" alt="Slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>{{$car->tittle}}</h1>
+                    <a href="#nosotros"><img src="{{ asset('image/arrow2.svg') }}" alt="flecha abajo"></a>
+                </div>
+            </div> 
+            <?php $i++;?>
+            @endforeach
         </div>
 </div>
 <!-- fin del carousel -->
-
 <!-- Seccion de nosotros -->
 <span id="nosotros"></span>
 <div class="row container-fluid nosotros">

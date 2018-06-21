@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
        
-        {!! Form::model($config, ['route' => ['mains.update', $config->id],'name' => 'contacto', 'method' => 'PUT']) !!}
+        {!! Form::model($menu, ['route' => ['menus.update', $menu->id],'name' => 'contacto', 'method' => 'PUT']) !!}
 
-            @include('admin.main.partials.form')
+            @include('admin.menu.partials.form')
 
         {!! Form::close() !!}
                 

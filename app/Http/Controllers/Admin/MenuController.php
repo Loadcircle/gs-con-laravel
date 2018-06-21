@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MenuUpdateRequest;
+use App\Http\Requests\MenuStoreRequest;
+use App\Section;
+use App\Menu;
 
 class MenuController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado
+    }     
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,13 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        //menu
+        $menu     = Menu::orderBy('section_id', 'ASC')
+                    ->join('sections', 'sections.id', '=', 'menus.section_id')
+                    ->select('menus.*', 'sections.name as section')
+                    ->get();
+        //menu
+        return view('admin.menu.index', compact('menu'));
     }
 
     /**
@@ -24,7 +37,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        //  
     }
 
     /**
@@ -35,7 +48,7 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //
     }
 
     /**
@@ -56,8 +69,20 @@ class MenuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $menu       = Menu::find($id);   
+
+        $section    = Section::where('status', '=', 'ACTIVE')->pluck('name', 'id');
+
+        $count      = Menu::pluck('position');
+
+        $array=array();
+        $i=1;
+        foreach($count as $c){
+            $array[$i]=$c;
+            $i++;
+        }  
+        return view('admin.menu.edit', compact('menu', 'array', 'section')); 
     }
 
     /**
@@ -67,9 +92,14 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MenuUpdateRequest $request, $id)
     {
-        //
+        $menu = Menu::find($id); 
+        
+        $menu->fill($request->all())->save();
+
+        return redirect()->route('menus.index')
+             ->with('info', 'Entrada actualizada con éxito');        
     }
 
     /**
@@ -80,6 +110,12 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //$post = Post::find($id)->delete();  este codigo ejecuta directamente el delete
+        $section = Section::find($id);
+        //$this->authorize('pass', $section);
+        
+        $section->delete();
+        
+        return back()->with('info', 'Eliminado correctamente');
     }
 }
