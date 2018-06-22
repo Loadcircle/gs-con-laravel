@@ -28,10 +28,6 @@
 
 
 <?php 
-
-
-
-
 ?>
 
 
@@ -59,7 +55,32 @@
                 </div>";               
     echo $content_image; ?>
     @elseif ($sec->section_types_id == 2)
-    <?php  echo $cards; ?>
+    <?php  
+    
+$cards = "<span id='servicio'></span>
+<div class='servicio'>
+    <div class='text-center my-5'>
+        <h1>Unidades del negocio</h1>
+    </div>";         
+    foreach($contenido[$z] as $cont){
+$cards .="<div class='tarjeta-wrap'>
+            <div class='tarjeta'>
+                <div class='adelante marca-1' style='background: url('".asset('')."/$cont->file');background-size: 100% 100%;background-position: center;'></div>
+                <div class='atras'>
+                    <div class='row' style='margin-top: 220px;'>
+                        <div class='col-md-6 col-sm-6 col-6'>
+                            <a href='$cont->name' target='_blank'><img width='50px' src='".asset('')."/image/home.svg' alt='icono-home'></a>
+                        </div>
+                        <div class='col-md-6 col-sm-6 col-6'>
+                            <a href='$cont->content' target='_blank'><img width='50px' src='".asset('')."/image/fb.svg' alt='icono-facebook'></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>";
+    }        
+$cards .="</div>";
+echo $cards; ?>
     @elseif ($sec->section_types_id == 3)
     <?php
     $parallax = "<span id='historia'></span>
