@@ -9,6 +9,7 @@ use App\Http\Requests\ContentUpdateRequest;
 use App\Http\Requests\ContentStoreRequest;
 use App\Content;
 use App\Section;
+use App\Section_type;
 
 
 
@@ -27,6 +28,11 @@ class ContentController extends Controller
         $section = Section::find($section_id);
         $titulo_seccion = $section->name;
         $section_type = $section->section_types_id;
+
+        //section_types
+        $section_types = Section_type::where('status', '=', 'ACTIVE')->get();
+        //
+
         //content
         $content    = Content::orderBy('contents.id', 'ASC')
                     ->join('sections', 'sections.id', '=', 'contents.section_id')
@@ -34,7 +40,7 @@ class ContentController extends Controller
                     ->where('sections.id', '=', $section_id)
                     ->get();
         //content
-        return view('admin.content.index', compact('content', 'section_id', 'titulo_seccion', 'section_type'));
+        return view('admin.content.index', compact('content', 'section_id', 'titulo_seccion', 'section_type', 'section_types'));
     }
 
     /**
@@ -157,5 +163,15 @@ class ContentController extends Controller
         $content->delete();
         
         return back()->with('info', 'Eliminado correctamente');
+    }
+
+    public function stype($section_id,$id)
+    {
+        $section    = Section::find($section_id);   
+
+        $section->update(['section_types_id' => $id]);
+
+        return redirect()->route('contents',['id' => $section_id])
+        ->with('info', 'Sección asignada con éxito');
     }
 }

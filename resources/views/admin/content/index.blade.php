@@ -7,7 +7,34 @@
         <hr>
         <div class="container">            
         @if (empty($section_type))
-            
+        <h2 class="text-center">Selecciona el tipo de sección</h2>
+        <div style="display: grid; grid-template-columns: auto auto auto; grid-gap: 20px 20px; align-items: center;">                
+            @foreach ($section_types as $st)
+            <div class="card" style="width: 100%; height: 100%">
+                <img class="card-img-top" style="height: 200px" src="{{asset('admin').'/'.$st->file}}" alt="Card image cap">
+                <div class="card-body text-center">
+                  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#confirmar{{$st->id}}" style="background: #212529; border: 0;">Seleccionar</a>
+                </div>
+            </div>
+
+            <div class="modal fade" id="confirmar{{$st->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" style="margin-top: 15%">
+                            <h1 class="text-center" style="color: white;">¿Desea confirmar esta sección?</h1>
+                          <div class="modal-content" style="background: transparent; border: none;">                
+                            {!! Form::open(['route'=>['contents.stype',$section_id, $st->id], 'method'=>'POST']) !!}
+                                <button class="btn btn-sm btn-success my-3" style="width: 100%">
+                                    Confirmar
+                                </button>
+                            {!! Form::close() !!}
+                                <button class="btn btn-sm btn-secondary my-3" data-dismiss="modal">
+                                    Cancelar
+                                </button>
+                          </div>
+                        </div>
+                  </div>
+
+            @endforeach
+        </div>
         @else
                 <a class="float-right my-2" href="{{ route('contents.create',['id' => $section_id]) }}"><img width="20px" src="{{asset('admin/image/plus-black-symbol.svg')}}" alt=""></a>
                 <table class="table table-striped table-hover text-center">

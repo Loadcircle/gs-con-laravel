@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content=@if(isset($description))"{{$description}}"@else"Grupo Garro Stucchi"@endif>
+    <meta name="keywords" content=@if(isset($keywords))"{{$keywords}}"@else"Grupo, Garro, Stucchi"@endif>
+    <meta name="author" content=@if(isset($author))"{{$author}}"@else"Garro Stucchi"@endif>
     <title>@if(isset($titulo)){{$titulo}}@else Garro Stucchi @endif</title>
     <link rel="icon" href=@if(isset($favicon))"{{asset('').'/'.$favicon}}"@else"{{ asset('image/default/favicon.png') }}"@endif type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -61,7 +64,19 @@
         <!-- fin del nav superior -->
 
     @yield('content')
-
+    <!-- empresario de footer -->
+    <img class="empresario" src="{{ asset('image/alexis.png') }}" alt="empresario">  
+    
+    <!-- Barra inferior de colores -->
+    <div class="bot-colores" id="bot">
+        <div class="col-colores"></div>
+        <div class="col-colores"></div>
+        <div class="col-colores"></div>
+        <div class="col-colores"></div>
+        <div class="col-colores"></div>
+    </div>
+    <!-- fin barra colores -->
+    
     <footer class="footer py-3">
             <div class="row my-5">
                 <div class="col-md-4 text-center">

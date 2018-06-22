@@ -1,47 +1,95 @@
 @extends('layouts.app')
-
 @section('content')
 <!-- Inicio del carousel -->
-<span id="inicio"></span> <!-- para remover el menu -->
-<div id="carouselExampleIndicators" class="carousel slide my-5" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <?php $i=0; ?>
-            @foreach ($carousel as $car)                
-                <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" @if($i == 0)class="active"@endif></li>
-            <?php $i++;?>
-            @endforeach
-        </ol>
-        <div class="carousel-inner">
-            <?php $i=0; ?>
-            @foreach ($carousel as $car)   
-            <div @if($i == 0)class="carousel-item active"@else class="carousel-item" @endif>
-                <img class="d-block w-100" src="{{ asset('').'/'.$car->file }}" alt="Slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h1>{{$car->tittle}}</h1>
-                    <a href="#nosotros"><img src="{{ asset('image/arrow2.svg') }}" alt="flecha abajo"></a>
-                </div>
-            </div> 
-            <?php $i++;?>
-            @endforeach
-        </div>
-</div>
+    <span id="inicio"></span> <!-- para remover el menu -->
+    <div id="carouselExampleIndicators" class="carousel slide my-5" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <?php $i=0; ?>
+                @foreach ($carousel as $car)                
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" @if($i == 0)class="active"@endif></li>
+                <?php $i++;?>
+                @endforeach
+            </ol>
+            <div class="carousel-inner">
+                <?php $i=0; ?>
+                @foreach ($carousel as $car)   
+                <div @if($i == 0)class="carousel-item active"@else class="carousel-item" @endif>
+                    <img class="d-block w-100" src="{{ asset('').'/'.$car->file }}" alt="Slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1>{{$car->tittle}}</h1>
+                        <a href="#nosotros"><img src="{{ asset('image/arrow2.svg') }}" alt="flecha abajo"></a>
+                    </div>
+                </div> 
+                <?php $i++;?>
+                @endforeach
+            </div>
+    </div>
 <!-- fin del carousel -->
-<!-- Seccion de nosotros -->
-<span id="nosotros"></span>
-<div class="row container-fluid nosotros">
-    <div class="col-md-6 flex-nosotros">
-        <div class="ml ">
-            <h1>Misión:</h1>
-            <p>Construir un país con empresas más eficientes en su gestión y comercialización a través de la generación de valor que aporta nuestro equipo con experiencia e innovación.</p>
-            <h1>Visión</h1>
-            <p>En cinco años ser la principal compañía de generación de transformación en empresas y personas a nivel nacional.</p>
-        </div>       
-    </div>
-    <div class="col-md-6">
-        <img class="edificio img-fluid" src="{{ asset('image/edificio.png') }}" alt="edificio">
-    </div>
-</div>
-<!-- Seccion de nosotros -->
+
+
+<?php 
+
+
+
+
+?>
+
+
+
+
+
+<?php $z=0; ?>
+@foreach ($secciones as $sec)
+    @if ($sec->section_types_id == 1)
+    <?php 
+    $content_image = "<span id='nosotros'></span>
+                    <div class='row container-fluid nosotros'>
+                        <div class='col-md-6 flex-nosotros'>
+                            <div class='ml '>";
+                                foreach($contenido[$z] as $cont)
+                                { 
+                                  $content_image .= "<h1>$cont->name</h1>
+                                    <p>$cont->content</p>";                
+                                }
+        $content_image .= "</div>    
+                        </div>
+                    <div class='col-md-6'>
+                        <img class='edificio img-fluid' src='".asset('')."/$cont->file' alt='edificio'>
+                    </div>
+                </div>";               
+    echo $content_image; ?>
+    @elseif ($sec->section_types_id == 2)
+    <?php  echo $cards; ?>
+    @elseif ($sec->section_types_id == 3)
+    <?php
+    $parallax = "<span id='historia'></span>
+                <div class='my-5 l-tiempo'>  
+                    <h1>"; 
+                        foreach($contenido[$z] as $cont)
+                        { 
+                          $parallax .= "$cont->content";                
+                        }
+        $parallax .="</h1>
+                </div>";
+      echo $parallax; ?>
+    @elseif ($sec->section_types_id == 4)
+    <?php  
+    $brand = "<span id='convenio'></span>
+    <div class='convenio my-5 text-center'>
+        <h1>Auspiciadores</h1>
+        <div class='display-grid my-5' style='display: grid; grid-template-columns: auto auto auto; justify-items:center; margin: 0 100px;'>";
+            foreach($contenido[$z] as $cont){
+            $brand .= "<div class='logo-auspicio'>
+                            <img src='".asset('')."/$cont->file' alt=''>
+                        </div>"; 
+            }
+                               
+    $brand .= "</div>
+    </div>";
+    echo $brand; ?>    
+    @endif
+    <?php $z++; ?>
+@endforeach
 
 <!-- Servicios -->
 <span id="servicio"></span>
@@ -145,56 +193,9 @@
 </div>
 <!-- Servicios -->
 
-<!-- Linea de tiempo -->
-<span id="historia"></span>
-<div class="my-5 l-tiempo">  
-    <h1>Comprometidos con tu <span>éxito.</span><br>Tenemos una metodología <br>propia de trabajo <br>orientada a resultados</h1>
-</div>
-<!-- Linea de tiempo -->
-
-<!-- Convenios -->
-<span id="convenio"></span>
-<div class="convenio my-5 text-center">
-    <h1>Auspiciadores</h1>
-    <div class="display-flex my-5">
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/consorcio_ferial_peru.png') }}" alt="">
-            </div>
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/cesar_vallejo.png') }}" alt="">
-            </div>
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/up.png') }}" alt="">
-            </div>
-    </div>
-    <div class="display-flex my-5">
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/franquicias_arg.png') }}" alt="">
-            </div>
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/finanzas_estructuradas.png') }}" alt="">
-            </div>
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/grupo_americano_franquicias.png') }}" alt="">
-            </div>
-    </div>
-    <div class="display-flex my-5">
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/camara_espanola.png') }}" alt="">
-            </div>
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/perusa.png') }}" alt="">
-            </div>
-            <div class="logo-auspicio">
-                <img src="{{ asset('image/auspicios/programa_nacional_franquicias.png') }}" alt="">
-            </div>
-    </div>
-</div>
-<!-- Convenios -->
-
 <!-- Contacto -->
-<span id="contacto"></span>
-<div class="contacto my-5">
+<div class="contacto my-5" @if($contacto<1)style="display: none"@endif>
+    <span id="contacto"></span>
     <div class="row">
         <div class="col-md-5 col-sm-12 col-xs-12 my-5">
             <img class="img-fluid" src="{{ asset('image/contacto.jpg') }}" alt="contacto">
@@ -212,17 +213,4 @@
 </div>
 <!-- Contacto -->
 <div class="alerta" id="alerta"></div>
-<!-- empresario de footer -->
-<img class="empresario" src="{{ asset('image/alexis.png') }}" alt="empresario">  
-
-<!-- Barra inferior de colores -->
-<div class="bot-colores" id="bot">
-    <div class="col-colores"></div>
-    <div class="col-colores"></div>
-    <div class="col-colores"></div>
-    <div class="col-colores"></div>
-    <div class="col-colores"></div>
-</div>
-<!-- fin barra colores -->
-
 @endsection

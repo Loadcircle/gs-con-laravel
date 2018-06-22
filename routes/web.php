@@ -35,3 +35,4 @@ Route::match(['get','post'],'show/{section_id}',     'Admin\ContentController@sh
 Route::match(['get','post'],'edit/{section_id}/{id}',     'Admin\ContentController@edit')->name('contents.edit');
 Route::match(['get','post'],'update/{section_id}',   'Admin\ContentController@update')->name('contents.update');
 Route::match(['get','post'],'destroy/{section_id}',  'Admin\ContentController@destroy')->name('contents.destroy');
+Route::match(['get','post'],'stype/{section_id}/{st_id}',  'Admin\ContentController@stype')->name('contents.stype');

@@ -9,6 +9,7 @@ use App\Content;
 use App\Menu;
 use App\Logo;
 use App\Section;
+use App\Section_type;
 use App\Carousel;
 
 class homeController extends Controller
@@ -42,6 +43,15 @@ class homeController extends Controller
         if((isset($info['3']) && $info['3']->status == 'ACTIVE')){
             $direccion = $info['3']->value;
         }
+        if((isset($info['4']) && $info['4']->status == 'ACTIVE')){
+            $description = $info['4']->value;
+        }
+        if((isset($info['5']) && $info['5']->status == 'ACTIVE')){
+            $keywords = $info['5']->value;
+        }
+        if((isset($info['6']) && $info['6']->status == 'ACTIVE')){
+            $author = $info['6']->value;
+        }
         //info
 
         //Menu
@@ -56,11 +66,35 @@ class homeController extends Controller
                     ->orderBy('position', 'ASC')->get();
         //carousel
 
+        //secciones
+        $secciones  =Section::where('status', 'ACTIVE')->whereNotNull('section_types_id')                    
+                    ->orderBy('position', 'ASC')->get();
+        //secciones
+
+        $contenido=array();
+        $i=0;
+        foreach($secciones as $sec){
+            //contenido
+            $contenido[$i]  =Content::where([
+                            ['status', '=', 'ACTIVE'],
+                            ['section_id', '=', $sec->id]
+                        ])->get();
+            //contenido
+            $i++;
+        }
+
+        //contacto
+        $contac  =Section::where('status', 'ACTIVE')->where('section_types_id', '5')->get();
+        $contacto=$contac->count();
+        //contacto
         return view('welcome', 
             compact('logo1', 'logo2', 'favicon', 
-                    'titulo', 'telefono', 'facebook', 'direccion', 
+                    'titulo', 'telefono', 'facebook', 'direccion','description', 'keywords', 'author', 
                     'menu',
-                    'carousel'));
+                    'carousel',
+                    'secciones',
+                    'contenido',
+                    'contacto'));
     }
 
     public function enviar(Request $request){       

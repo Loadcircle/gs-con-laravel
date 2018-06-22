@@ -17,6 +17,7 @@ class CreateSectionTypeTable extends Migration
         //     $table->increments('id');
             
         //     $table->string('name', 128);
+        //     $table->string('file', 255);
         //     $table->enum('status', ['ACTIVE', 'INACTIVE']);
 
         //     $table->timestamps();
