@@ -114,13 +114,13 @@ class SectionController extends Controller
     public function update(SectionUpdateRequest $request, $id)
     {
         $section = Section::find($id); 
-        $menu = Menu::where('id', '=', $id)->firstOrFail();
+        $menu = Menu::where('section_id', '=', $id)->firstOrFail();
 
         $menu->fill(['position' => $request->position,'status' => $request->status])->save();
         $section->fill($request->all())->save();
 
         return redirect()->route('sections.index')
-             ->with('info', 'Entrada actualizada con éxito');        
+              ->with('info', 'Entrada actualizada con éxito');        
     }
 
     /**
