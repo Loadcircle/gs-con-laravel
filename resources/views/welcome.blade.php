@@ -26,19 +26,11 @@
     </div>
 <!-- fin del carousel -->
 
-
-<?php 
-?>
-
-
-
-
-
 <?php $z=0; ?>
 @foreach ($secciones as $sec)
     @if ($sec->section_types_id == 1)
     <?php 
-    $content_image = "<span id='nosotros'></span>
+    $content_image = "<span id='$sec->slug'></span>
                     <div class='row container-fluid nosotros'>
                         <div class='col-md-6 flex-nosotros'>
                             <div class='ml '>";
@@ -49,30 +41,36 @@
                                 }
         $content_image .= "</div>    
                         </div>
-                    <div class='col-md-6'>
-                        <img class='edificio img-fluid' src='".asset('')."/$cont->file' alt='edificio'>
-                    </div>
+                    <div class='col-md-6'>";
+                        foreach($contenido[$z] as $cont){
+                        if(!empty($cont->file)){
+                            $content_image .= "<img class='edificio img-fluid' src='".asset('')."/$cont->file' alt='edificio'>";
+                            }
+                        }
+    $content_image .= "</div>
                 </div>";               
     echo $content_image; ?>
     @elseif ($sec->section_types_id == 2)
     <?php  
     
-$cards = "<span id='servicio'></span>
+$cards = "<span id='$sec->slug'></span>
 <div class='servicio'>
     <div class='text-center my-5'>
         <h1>Unidades del negocio</h1>
-    </div>";         
+    </div>             
+    <div class='display-grid' style='display: grid; grid-template-columns: auto auto auto;justify-content: center;'> ";  
     foreach($contenido[$z] as $cont){
 $cards .="<div class='tarjeta-wrap'>
             <div class='tarjeta'>
-                <div class='adelante marca-1' style='background: url('".asset('')."/$cont->file');background-size: 100% 100%;background-position: center;'></div>
-                <div class='atras'>
-                    <div class='row' style='margin-top: 220px;'>
+                <div class='adelante' style='background: url(".asset('')."/$cont->file);background-size: 100% 100%;background-position: center;'></div>
+                <div class='atras' style='background: url(".asset('')."/$cont->file);'>
+                    <div class='row' style='position: absolute; bottom: 0; margin: 10px'>
+                            $cont->content                                    
                         <div class='col-md-6 col-sm-6 col-6'>
                             <a href='$cont->name' target='_blank'><img width='50px' src='".asset('')."/image/home.svg' alt='icono-home'></a>
                         </div>
                         <div class='col-md-6 col-sm-6 col-6'>
-                            <a href='$cont->content' target='_blank'><img width='50px' src='".asset('')."/image/fb.svg' alt='icono-facebook'></a>
+                            <a href='$cont->sub_name' target='_blank'><img width='50px' src='".asset('')."/image/fb.svg' alt='icono-facebook'></a>
                         </div>
                     </div>
                 </div>
@@ -83,9 +81,14 @@ $cards .="</div>";
 echo $cards; ?>
     @elseif ($sec->section_types_id == 3)
     <?php
-    $parallax = "<span id='historia'></span>
-                <div class='my-5 l-tiempo'>  
-                    <h1>"; 
+    $parallax = "<span id='$sec->slug'></span>";
+                foreach($contenido[$z] as $cont)
+                {  if(!empty($cont->file))
+                    {
+                    $parallax .="<div class='my-5 l-tiempo' style='background: url(".asset('')."/$cont->file);background-attachment: fixed;background-size: cover;background-repeat: no-repeat;'>";
+                    } 
+                }
+                $parallax .="<h1>"; 
                         foreach($contenido[$z] as $cont)
                         { 
                           $parallax .= "$cont->content";                
@@ -95,7 +98,7 @@ echo $cards; ?>
       echo $parallax; ?>
     @elseif ($sec->section_types_id == 4)
     <?php  
-    $brand = "<span id='convenio'></span>
+    $brand = "<span id='$sec->slug'></span>
     <div class='convenio my-5 text-center'>
         <h1>Auspiciadores</h1>
         <div class='display-grid my-5' style='display: grid; grid-template-columns: auto auto auto; justify-items:center; margin: 0 100px;'>";
@@ -111,108 +114,6 @@ echo $cards; ?>
     @endif
     <?php $z++; ?>
 @endforeach
-
-<!-- Servicios -->
-<span id="servicio"></span>
-<div class="servicio">
-    <div class="text-center my-5">
-        <h1>Unidades del negocio</h1>
-    </div>      
-
-    <div class="display-flex marca-1">       
-        <div class="tarjeta-wrap">
-            <div class="tarjeta">
-                <div class="adelante marca-1"></div>
-                <div class="atras">
-                    <div class="row" style="margin-top: 220px;">
-                        <div class="col-md-6 col-sm-6 col-6">
-                            <a href="http://pmktconsulting.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-6">
-                            <a href="https://www.facebook.com/pmktconsulting/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tarjeta-wrap">
-            <div class="tarjeta">
-                <div class="adelante marca-1"></div>
-                <div class="atras">
-                    <div class="row" style="margin-top: 220px;">
-                        <div class="col-md-6 col-sm-6 col-6">
-                            <a href="https://clubfranquicia.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-6">
-                            <a href="https://www.facebook.com/FranquiciaClub/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tarjeta-wrap">
-            <div class="tarjeta">
-                <div class="adelante marca-1"></div>
-                <div class="atras">                            <div class="row" style="margin-top: 220px;">
-                    <div class="col-md-6 col-sm-6 col-6">
-                        <a href="http://feriafranquiciasperu.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-6">
-                        <a href="https://www.facebook.com/fifperu/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
-                    </div>
-                </div></div>
-            </div>
-        </div>
-    </div>
-    <div class="display-flex marca-2">       
-            <div class="tarjeta-wrap">
-                <div class="tarjeta">
-                    <div class="adelante marca-1"></div>
-                    <div class="atras">
-                        <div class="row" style="margin-top: 220px;">
-                            <div class="col-md-6 col-sm-6 col-6">
-                                <a href="http://happyfactory.pe" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-6">
-                                <a href="https://www.facebook.com/HappyFactory.pe/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tarjeta-wrap">
-                <div class="tarjeta">
-                    <div class="adelante marca-1"></div>
-                    <div class="atras">
-                        <div class="row" style="margin-top: 220px;">
-                            <div class="col-md-6 col-sm-6 col-6">
-                                <a href="http://www.miboda.com.pe" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-6">
-                                <a href="www.facebook.com/miboda.com.pe/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tarjeta-wrap">
-                <div class="tarjeta">
-                    <div class="adelante marca-1"></div>
-                    <div class="atras">
-                        <div class="row" style="margin-top: 220px;">
-                            <div class="col-md-6 col-sm-6 col-6">
-                                <a href="https://agcproducciones.com" target="_blank"><img width="50px" src="{{ asset('image/home.svg') }}" alt="icono-home"></a>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-6">
-                                <a href="https://www.facebook.com/AGC-Producciones-161667073894696/" target="_blank"><img width="50px" src="{{ asset('image/fb.svg') }}" alt="icono-facebook"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-</div>
-<!-- Servicios -->
 
 <!-- Contacto -->
 <div class="contacto my-5" @if($contacto<1)style="display: none"@endif>

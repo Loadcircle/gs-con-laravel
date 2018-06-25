@@ -32,6 +32,15 @@ class ContentController extends Controller
         //section_types
         $section_types = Section_type::where('status', '=', 'ACTIVE')->get();
         //
+        
+        $count = Section::pluck('position');
+
+        $array=array();
+        $i=1;
+        foreach($count as $c){
+            $array[$i]=$c;
+            $i++;
+        }
 
         //content
         $content    = Content::orderBy('contents.id', 'ASC')
@@ -40,7 +49,7 @@ class ContentController extends Controller
                     ->where('sections.id', '=', $section_id)
                     ->get();
         //content
-        return view('admin.content.index', compact('content', 'section_id', 'titulo_seccion', 'section_type', 'section_types'));
+        return view('admin.content.index', compact('content', 'section_id', 'titulo_seccion', 'section_type', 'section_types','array'));
     }
 
     /**
@@ -50,7 +59,16 @@ class ContentController extends Controller
      */
     public function create($section_id)
     {
-        return view('admin.content.create', compact('section_id'));
+        $count = Section::pluck('position');
+
+        $array=array();
+        $i=1;
+        foreach($count as $c){
+            $array[$i]=$c;
+            $i++;
+        }
+
+        return view('admin.content.create', compact('section_id', 'array'));
     }
 
     /**
@@ -109,9 +127,18 @@ class ContentController extends Controller
      */
     public function edit($section_id,$id)
     {
+        
+        $count = Section::pluck('position');
+
+        $array=array();
+        $i=1;
+        foreach($count as $c){
+            $array[$i]=$c;
+            $i++;
+        }
         $content    = Content::find($id);   
 
-        return view('admin.content.edit', compact('content', 'section_id', 'id')); 
+        return view('admin.content.edit', compact('content', 'section_id', 'id', 'array')); 
     }
 
     /**

@@ -218,7 +218,8 @@ p{
     position: relative;
     transform-style: preserve-3d; 
     transition: .7s;
-}
+ }
+ /*
 .marca-1 .tarjeta-wrap:nth-child(1) .adelante{
     background: url('../image/marcas/pmkt.png');
     background-size: 100% 100%;
@@ -266,7 +267,7 @@ p{
 }
 .marca-2 .tarjeta-wrap:nth-child(3) .atras{
     background: url('../image/marcas/agc.png');
-}
+} */
 .adelante, .atras{
     width: 100%;
     height: 100%;
@@ -304,8 +305,7 @@ p{
 /*auspicios*/
 
 /* linea de tiempo */
-    .l-tiempo{
-        background: url('../image/l-tiempo.jpg');
+    .l-tiempo{        
         background-attachment: fixed;
         background-size: cover;
         background-repeat: no-repeat;        

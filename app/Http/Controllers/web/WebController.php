@@ -12,7 +12,7 @@ use App\Section;
 use App\Section_type;
 use App\Carousel;
 
-class homeController extends Controller
+class WebController extends Controller
 {
     public function index(){
 
@@ -78,7 +78,7 @@ class homeController extends Controller
             $contenido[$i]  =Content::where([
                             ['status', '=', 'ACTIVE'],
                             ['section_id', '=', $sec->id]
-                        ])->get();
+                        ])->orderBy('position', 'ASC')->get();
             //contenido
             $i++;
         }
@@ -101,7 +101,6 @@ class homeController extends Controller
         
         if($request->ajax()){
             $nombre = $request->input("nombre");
-            return dd($nombre);
             
         }
     }

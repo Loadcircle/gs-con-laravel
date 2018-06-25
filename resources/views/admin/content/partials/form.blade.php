@@ -8,6 +8,10 @@
                 {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}  
             </div>
             <div class="form-group ">
+                {{ Form::label('sub_name','Subtittle or FB')}}
+                {{ Form::text('sub_name', null, ['class' => 'form-control', 'id' => 'sub_name']) }}  
+            </div>
+            <div class="form-group ">
                 {{ Form::textarea('content', null, ['class' => 'form-control', 'id' => 'content']) }}  
             </div>
             <div class="form-group ">
@@ -15,10 +19,7 @@
             </div>  
             <div class="form-group ">             
                 {!! Form::label('select', 'Position') !!}            
-                {{ Form::select('position',array(
-                    '1' => '1',
-                    '2' => '2',
-                ), null,['class' => 'form-control', 'id' => 'position']) }}
+                {{ Form::select('position', $array, null,['class' => 'form-control', 'id' => 'position']) }}
             </div>   
     
             <div class="form-group ">             

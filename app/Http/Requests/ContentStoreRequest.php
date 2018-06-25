@@ -27,6 +27,7 @@ class ContentStoreRequest extends FormRequest
             'file'          => 'nullable|mimes:png,jpeg|max:3000|dimensions:max_width=3000,max_height=3000',
             'position'      => 'integer',
             'section_id'    => 'required|integer',
+            'position'      => 'required',
             'status'        => 'required|in:ACTIVE,INACTIVE'
         ];
     }
