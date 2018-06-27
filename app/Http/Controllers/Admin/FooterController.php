@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Footer;
+use App\Keep;
 
 class FooterController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,11 @@ class FooterController extends Controller
      */
     public function index()
     {
-        //
+        $footer = Footer::get();
+
+        $keep = Keep::get();
+
+        return view('admin.footer.index', compact('footer', 'keep'));
     }
 
     /**
@@ -46,7 +55,9 @@ class FooterController extends Controller
      */
     public function show($id)
     {
-        //
+        $footer = Footer::find($id)->update(['status' => 'ACTIVE']); 
+
+        return redirect()->route('footers.index');
     }
 
     /**
@@ -80,6 +91,8 @@ class FooterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $footer = Footer::find($id)->update(['status' => 'INACTIVE']); 
+
+        return back();   
     }
 }

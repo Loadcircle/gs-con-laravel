@@ -1,22 +1,17 @@
 <div class="form-group row">
-    <div class="col-sm-3">
-        {!! Form::label('name', 'Name') !!}
-        {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
+    <div class="col-sm-6">
+        <p>Mensaje desde la seccion de <strong>Contacto</strong> desde la IP: <strong>{{$contact->ip}}</strong></p><hr>
+        <p>Fue enviado por: <strong>{{$contact->name}} {{$contact->lastname}}</strong></p><hr>
+        <p>Telefono: <strong>{{$contact->phone}}</strong></p><hr>
+        <p>Email: <strong>{{$contact->email}}</strong> </p><hr>
+        <p>Mensaje: <strong>{{$contact->message}}</strong></p><hr>
     </div>
-    <div class="col-sm-3">        
-        {!! Form::label('slug', 'Url') !!}        
-        {{ Form::text('slug', null, ['class' => 'form-control', 'id' => 'slug']) }}
-    </div>
-    <div class="col-sm-3">
-        {!! Form::label('position', 'Position') !!}   
-        {{ Form::select('position', $array, null,['class' => 'form-control', 'id' => 'position']) }}
-    </div>
-    <div class="col-sm-3">
-        {!! Form::label('status', 'Status') !!}   
-        {{ Form::select('status', array(
-            'ACTIVE' => 'Active',
-            'INACTIVE' => 'Inactive',
-        ), null,['class' => 'form-control', 'id' => 'status']) }}
+    <div class="col-sm-6">
+        {!! Form::label('status', 'Actualizar estatus') !!}   
+        {{ Form::select('status', $array, null,['class' => 'form-control', 'id' => 'status']) }}
+        <br><hr>
+        <p>Recibido el dia: <strong>{{$contact->created_at}}</strong></p><hr>
+        <p>Ultima actualización: <strong>{{$contact->updated_at}}</strong></p><hr>
     </div>
 </div>
 

@@ -10,6 +10,9 @@ use App\Email;
 
 class ContactController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado
+    }     
     /**
      * Display a listing of the resource.
      *
@@ -19,12 +22,10 @@ class ContactController extends Controller
     {
         $contact = Contact::orderBy('contacts.id', 'DESC')
         ->join('contact_status', 'contact_status.id', '=', 'contacts.status')
-        ->join('emails', 'emails.id', '=', 'contacts.send_to')
-        ->select('contacts.*', 'contact_status.name as c_status', 'emails.name as e_name')
+        ->select('contacts.*', 'contact_status.name as c_status')
         ->get();
-
-        $status = Contact_status::where('status', 'ACTIVE')->get();
-        $emails = Email::where('status', 'ACTIVE')->get();
+        $status = Contact_status::get();
+        $emails = Email::get();
         return view('admin.contact.index', compact('contact', 'status', 'emails'));
     }
 
@@ -68,7 +69,15 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact = Contact::find($id);        
+        $contact->orderBy('contacts.id', 'DESC')
+        ->join('contact_status', 'contact_status.id', '=', 'contacts.status')
+        ->select('contacts.*', 'contact_status.name as c_status')
+        ->get();
+
+        $array = Contact_status::pluck('name', 'id');
+
+        return view('admin.contact.edit', compact('contact', 'array'));
     }
 
     /**
@@ -80,7 +89,12 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contact = Contact::find($id); 
+
+        $contact->fill($request->all())->save();
+
+        return redirect()->route('contacts.index')
+             ->with('info', 'Estatus actualizado con éxito');
     }
 
     /**

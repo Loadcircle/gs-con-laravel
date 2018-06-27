@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Contact_status;
+use App\Keep;
 
-class ContactStatusController extends Controller
+class KeepController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado
-    }     
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -39,12 +39,11 @@ class ContactStatusController extends Controller
      */
     public function store(Request $request)
     {
-        $c_status   = Contact_status::create($request->all());
-        
-        $c_status->fill($request->all())->save();
+        $keep    = Keep::create($request->all());
 
-        return redirect()->route('contacts.index')
-        ->with('info', 'Estatus creado con éxito');          
+        $keep->fill($request->all())->save();
+
+        return back()->with('info', 'Creado correctamente');   
     }
 
     /**
@@ -66,9 +65,7 @@ class ContactStatusController extends Controller
      */
     public function edit($id)
     {
-        $status = Contact_status::find($id);     
-        
-        return view('admin.contact.s_edit', compact('status'));
+        //
     }
 
     /**
@@ -80,12 +77,7 @@ class ContactStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $status = Contact_status::find($id); 
-
-        $status->fill($request->all())->save();
-
-        return redirect()->route('contacts.index')
-             ->with('info', 'Estatus actualizado con éxito');
+        //
     }
 
     /**
@@ -96,9 +88,10 @@ class ContactStatusController extends Controller
      */
     public function destroy($id)
     {
-        $status    = Contact_status::find($id);   
-        $status->delete();
-        return redirect()->route('contacts.index')
-        ->with('info', 'Estatus eliminado con éxito');
+        $keep = Keep::find($id);
+        
+        $keep->delete();
+        
+        return back()->with('info', 'Eliminado correctamente');
     }
 }

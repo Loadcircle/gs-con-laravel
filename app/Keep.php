@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Keep extends Model
 {
-    protected $fillable = [
-        'status'
+    protected $fillable=[
+        'name', 'url'
     ];
 }

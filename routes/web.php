@@ -22,11 +22,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('mains',        'Admin\MainController');
 Route::resource('logos',        'Admin\LogoController');
-Route::resource('sections',     'Admin\sectionController');
+Route::resource('sections',     'Admin\SectionController');
 Route::resource('menus',        'Admin\MenuController');
 Route::resource('carousels',    'Admin\CarouselController');
 Route::resource('contacts',     'Admin\ContactController');
 Route::resource('footers',      'Admin\FooterController');
+Route::resource('keeps',         'Admin\KeepController');
 Route::resource('c_status',     'Admin\ContactStatusController');
 Route::resource('emails',       'Admin\EmailController');
 

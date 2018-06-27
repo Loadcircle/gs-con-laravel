@@ -400,6 +400,12 @@ p{
     .nav-link{
         margin: 0;
     }
+    .display-grid{
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))!important;
+    }
+    .convenio .display-grid{
+        margin: 0!important;
+    }
 }
 /*1182*/
 
@@ -417,6 +423,10 @@ p{
     }
     .contacto h1{
         text-align: center;
+    }
+    .l-tiempo h1{
+        text-align: center;
+        margin: 10px
     }
 }
 /* 767 */
@@ -443,6 +453,9 @@ p{
         width: 150px;
         margin-top: 0!important;
         margin-left: 20%;
+    }
+    footer h5{
+        font-size: 1rem
     }
 }
 /*Estilos para celular*/

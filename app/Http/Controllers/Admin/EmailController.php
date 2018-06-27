@@ -8,6 +8,9 @@ use App\Email;
 
 class EmailController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth'); // esto pide que para entrar este autorizado, o sea logeado
+    }     
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +66,9 @@ class EmailController extends Controller
      */
     public function edit($id)
     {
-        //
+        $email = Email::find($id);     
+        
+        return view('admin.contact.e_edit', compact('email'));
     }
 
     /**
@@ -75,7 +80,12 @@ class EmailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $email = Email::find($id); 
+
+        $email->fill($request->all())->save();
+
+        return redirect()->route('contacts.index')
+             ->with('info', 'Email actualizado con éxito');
     }
 
     /**
@@ -86,6 +96,9 @@ class EmailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $email    = Email::find($id);   
+        $email->delete();
+        return redirect()->route('contacts.index')
+        ->with('info', 'Email eliminado con éxito');
     }
 }

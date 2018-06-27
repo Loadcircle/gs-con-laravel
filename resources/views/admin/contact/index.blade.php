@@ -30,16 +30,27 @@
                                 <td>{{ $e->email }}</td>
                                 <td>{{ $e->status }}</td>
                                 <td>
-                                    <a href="{{ route('contacts.edit', $e->id) }}" class="btn btn-sm btn-default"><img width="25px" src="{{asset('admin/image/pencil.svg')}}" alt="" srcset=""></a>       
+                                    <a href="{{ route('emails.edit', $e->id) }}" class="btn btn-sm btn-default"><img width="25px" src="{{asset('admin/image/pencil.svg')}}" alt="" srcset=""></a>       
+                                    <a href="#" data-toggle="modal" data-target="#e_eliminar{{$e->id}}" class="btn btn-sm btn-danger">Eliminar</a>                      
+                      
+                                </td>
+                                
+                            </tr>                            
+                            <div style="margin-top: 10%" class="modal fade" id="e_eliminar{{$e->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-md">
+                                    <h1 class="text-center" style="color: white;">¿Eliminar el email {{$e->email}}?</h1>
+                                  <div class="modal-content" style="background: transparent; border: none;">                
                                     {!! Form::open(['route'=>['emails.destroy', $e->id], 'method'=>'DELETE']) !!}
                                         <button class="btn btn-sm btn-danger">
                                             Eliminar
                                         </button>
-                                    {!! Form::close() !!}                       
-                                </td>
-                                
-                            </tr>
-                       
+                                    {!! Form::close() !!} 
+                                        <button class="btn btn-sm btn-primary my-3" data-dismiss="modal">
+                                            Cancelar
+                                        </button>
+                                  </div>
+                                </div>
+                            </div>                        
                             @endforeach
                         </tbody>
                     </table>
@@ -63,14 +74,25 @@
                                 <td>{{ $s->name }}</td>
                                 <td>{{ $s->status }}</td>
                                 <td>
-                                    <a href="{{ route('contacts.edit', $s->id) }}" class="btn btn-sm btn-default"><img width="25px" src="{{asset('admin/image/pencil.svg')}}" alt="" srcset=""></a>       
-                                    {!! Form::open(['route'=>['c_status.destroy', $s->id], 'method'=>'DELETE']) !!}
+                                    <a href="{{ route('c_status.edit', $s->id) }}" class="btn btn-sm btn-default"><img width="25px" src="{{asset('admin/image/pencil.svg')}}" alt="" srcset=""></a>       
+                                    <a href="#" data-toggle="modal" data-target="#s_eliminar{{$s->id}}" class="btn btn-sm btn-danger">Eliminar</a>                      
+                                </td>
+                            </tr> 
+                            <div style="margin-top: 10%" class="modal fade" id="s_eliminar{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-md">
+                                    <h1 class="text-center" style="color: white;">El eliminar el status se eliminaran todos los correos relacionados a este ¿Desea continuar?</h1>
+                                  <div class="modal-content" style="background: transparent; border: none;">                
+                                        {!! Form::open(['route'=>['c_status.destroy', $s->id], 'method'=>'DELETE']) !!}
                                         <button class="btn btn-sm btn-danger">
                                             Eliminar
                                         </button>
-                                    {!! Form::close() !!}                       
-                                </td>
-                            </tr>                       
+                                    {!! Form::close() !!} 
+                                        <button class="btn btn-sm btn-primary my-3" data-dismiss="modal">
+                                            Cancelar
+                                        </button>
+                                  </div>
+                                </div>
+                            </div>                      
                             @endforeach
                         </tbody>
                     </table>
@@ -84,7 +106,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>IP</th>
+                                <th>Send</th>
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
@@ -96,13 +118,13 @@
                             @foreach($contact as $c)
                             <tr>
                                 <td>{{ $c->id }}</td>
-                                <td>{{ $c->ip }}</td>
-                                <td>{{ $c->name, $c->lastname}}</td>
+                                <td>{{ $c->created_at }}</td>
+                                <td>{{ $c->name.' '.$c->lastname}}</td>
                                 <td>{{ $c->phone }}</td>
                                 <td>{{ $c->email }}</td>
                                 <td>{{ $c->c_status }}</td>
                                 <td>
-                                    <a href="{{ route('contacts.show', $c->id) }}" class="btn btn-sm btn-success">Ver</a>                                                               
+                                    <a href="{{ route('contacts.edit', $c->id) }}" class="btn btn-sm btn-success">Ver</a>                                                               
                                 </td>
                             </tr>
                        

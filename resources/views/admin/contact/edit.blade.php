@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
        
-        {!! Form::model($section, ['route' => ['sections.update', $section->id],'name' => 'contacto', 'method' => 'PUT']) !!}
+        {!! Form::model($contact, ['route' => ['contacts.update', $contact->id],'name' => 'contacto', 'method' => 'PUT']) !!}
 
-            @include('admin.section.partials.form')
+            @include('admin.contact.partials.form')
 
         {!! Form::close() !!}
                 
